@@ -1,9 +1,11 @@
 #!/bin/bash
 
-working_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/.." && cd "$working_dir" || exit
+working_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)" && cd "$working_dir" || exit
 
 for i in {1..5} ; do
   echo "test $i of 5"
+  echo $@
+  cd ../poster
   npm run jest "$@" || exit
 done
 

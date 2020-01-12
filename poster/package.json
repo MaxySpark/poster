@@ -9,7 +9,7 @@
     "test": "npm run lint && jest --testNamePattern '^(?!tag:slow)'",
     "test:slow": "npm run lint && jest",
     "test:name": "npm run lint && jest --testNamePattern",
-    "test:flaky": "npm run lint && bin/test-flaky"
+    "test:flaky": "npm run lint && bash ./../bin/test-flaky"
   },
   "dependencies": {
     "@elastic/elasticsearch": "^7.5.0",

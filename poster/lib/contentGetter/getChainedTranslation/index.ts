@@ -15,6 +15,14 @@ interface GetChainedTranslation {
 }
 
 const getChainedTranslation: GetChainedTranslation = async ({text, languages, proxy}) => {
+  if (text.trim().length === 0) {
+    throw new Error('empty keyword')
+  }
+
+  if (languages.length === 0) {
+    throw new Error('empty language')
+  }
+
   let result = text
   for (let i = 0; i < languages.length; i++) {
     result = await getTranslation(result, languages[i], proxy)
@@ -24,14 +32,6 @@ const getChainedTranslation: GetChainedTranslation = async ({text, languages, pr
 
 // eslint-disable-next-line require-await
 const getTranslation = async (text: string, language: string, proxy?: ProxySettings) => {
-  if (text.trim().length === 0) {
-    throw new Error('empty keyword')
-  }
-
-  if (language.length === 0) {
-    throw new Error('empty language')
-  }
-
   let browser
   try {
     let proxy_url
